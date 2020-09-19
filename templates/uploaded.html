@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block body %}
-<h1>Next Plant</h1>
+<div class='imgWrap'>
+    <img src="{{ url_for('static', filename=filePath) }}" alt="Your image">
+</div>
 
-<img src="{{ url_for('static', filename=filePath) }}" alt="Your image">
-
-<p>
-    Your image is a: {{ name }}
-</p>
+<h3 class='flowerName'>
+    {{ name }}
+</h3>
 {% endblock %}

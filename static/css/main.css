@@ -1,3 +1,45 @@
-body {
-    background: coral;
+#title {
+    text-align: center;
+    margin: 20px 0 50px 0;
+    color: #558263
+}
+
+.uploadPhoto {
+    background-color: #bedacb;
+    padding: 10px 10px 0 10px;
+    border-radius: 5px;
+    margin-top: 50px;
+}
+
+.uploadDescr {
+    font-size: 1.5rem;
+    text-align: center;
+    color: #e67a73;
+    font-weight: bold;
+}
+
+#imgUpload {
+    overflow: hidden;
+}
+
+.form-row > * {/*:not(:last-child) {*/
+    margin-bottom: 10px;
+}
+
+.homeDescr {
+    margin-top: 50px;
+}
+
+.imgWrap {
+    text-align: center;
+}
+.imgWrap > img {
+    border-radius: 5px;
+    width: auto;
+}
+
+.flowerName {
+    text-align: center;
+    text-transform: capitalize;
+    margin-top: 20px;
 }
