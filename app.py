@@ -3,6 +3,8 @@ import base64
 import requests
 import wikipedia
 import re
+from textblob import TextBlob
+from nltk.tokenize import sent_tokenize
 
 from flask import Flask, render_template, url_for, request, redirect
 
@@ -65,6 +67,29 @@ def scrape(name, filtered_sections=False):
                       ' does not exist for ' + name)
 
         return filtered
+
+def rank_sentences(text_dict, top=5):
+    '''
+    text_dict(dict): a dictionary mapping different sections to some text. use the output from the scrape
+                     function as an argument
+    top(int): total number of sentences that will be returned by this function. Default is 5.
+
+    Summary of the algorithm: Stitch all the text together and break them down into sentences.
+    For each sentence, give a sentiment score. Take some number of sentences(specified by top)
+    with the highest sentiment score(i.e. more positive sentiment) and return the cleaned version of them.
+    '''
+
+    all_text = ' '.join(text_dict[key] for key in text_dict)
+    sentences = sent_tokenize(all_text)
+    all_text = [(sent, TextBlob(sent).polarity) for sent in sentences]
+    all_text_forward = sorted(all_text, key = lambda x: x[1], reverse=True)[:top]
+
+    return [clean_text(text) for text in all_text_forward]
+
+def clean_text(text):
+    '''clean up the ===title=== part of the text'''
+    text = re.sub('e.g.', '', text)
+    return re.sub(r'(=)+([a-zA-Z0-9\s]*)(=)+', '', text).strip()
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
