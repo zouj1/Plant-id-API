@@ -38,7 +38,7 @@
     width: auto;
 }
 
-.flowerName {
+.flowerInfo {
     text-align: center;
     text-transform: capitalize;
     margin-top: 20px;
@@ -46,4 +46,26 @@
 
 .custom-file {
     width: auto;
+}
+
+.sciName {
+    font-style: italic;
+    color: gray;
+}
+
+.wikipediaURL {
+    text-align: right;
+}
+
+.wikipediaURL > a {
+    color: #558263;
+}
+
+.funfact {
+    color: #e67a73;
+    font-weight: bold;
+}
+
+.funfactWrap {
+    text-align: justify;
 }

@@ -9,7 +9,22 @@
     <img src="{{ url_for('static', filename=filePath) }}" alt="Your image">
 </div>
 
-<h3 class='flowerName'>
-    {{ name }}
-</h3>
+<div class='flowerInfo'>
+    <h3>
+        {{ commonName }}
+    </h3>
+    <p class='sciName'>
+        ( {{ name }} )
+    </p>
+    <p class='funfactWrap'>
+        <span class='funfact'>Fun Fact</span>: {{ fact }}
+    </p>
+    <p class='wikipediaURL'>
+        <a href="{{ url }}">Learn more!</a>
+    </p>
+</div>
+{% endblock %}
+
+{% block upload %}
+    Identify Another Plant
 {% endblock %}

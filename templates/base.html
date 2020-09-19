@@ -12,7 +12,27 @@
 
 <body class='container'>
     <h1 id='title'>Next Plant</h1>
+
     {% block body%}{% endblock %}
+
+    <div class='uploadPhoto'>
+        <p class="uploadDescr">{% block upload %}{% endblock %}</p>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <div class='form-row align-items-center justify-content-center'>
+                <!-- <div class='col-auto'>
+                    <input type="file" name="imgUpload" id="imgUpload" accept="image/*">
+                </div> -->
+                <div class="col-auto custom-file">
+                    <input type="file" class="custom-file-input" name="imgUpload" id="imgUpload" accept="image/*">
+                    <label class="custom-file-label" for="imgUpload">Choose file</label>
+                </div>
+                <div class='col-auto'>
+                    <button type="submit" class='btn btn-success'>Upload</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
     <script>
         bsCustomFileInput.init();

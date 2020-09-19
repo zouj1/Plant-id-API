@@ -75,13 +75,16 @@ def index():
             filePath = 'img/'+fileName[0]+str(random.random())+"."+fileName[1]
             uploaded.save('static/'+filePath)
 
-            # info = identify('static/'+filePath)
-            # if isinstance(info, dict):
-            #     name = info['suggestions'][0]['plant_name']
-            #     # scrape(name)
-            # elif isinstance(info, str):
-            #     print(info)
-        return render_template('uploaded.html', filePath=filePath, name=fileName[0]+fileName[1])
+            info = identify('static/'+filePath)
+            if isinstance(info, dict):
+                name = info['suggestions'][0]['plant_name']
+                common_names = info['suggestions'][0]["plant_details"]["common_names"][0]
+                url = info['suggestions'][0]["plant_details"]["url"]
+                fact = "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                # scrape(name)
+                return render_template('uploaded.html', filePath=filePath, name=name, commonName=common_names, url=url, fact=fact)
+            elif isinstance(info, str):
+                print(info)
     else:
         return render_template('index.html')
 
