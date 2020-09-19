@@ -7,10 +7,9 @@
 {% block body %}
 <h1>Next Plant</h1>
 
-<p>
-    Upload a plant picture here and we'll tell you what's up
-    {{ filePath }}
-</p>
-
 <img src="{{ url_for('static', filename=filePath) }}" alt="Your image">
+
+<p>
+    Your image is a: {{ name }}
+</p>
 {% endblock %}
