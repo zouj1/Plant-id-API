@@ -11,8 +11,12 @@
     <p class="uploadDescr">Upload Plant Image</p>
     <form action="/" method="post" enctype="multipart/form-data">
         <div class='form-row align-items-center justify-content-center'>
-            <div class='col-auto'>
+            <!-- <div class='col-auto'>
                 <input type="file" name="imgUpload" id="imgUpload" accept="image/*">
+            </div> -->
+            <div class="col-auto custom-file">
+                <input type="file" class="custom-file-input" name="imgUpload" id="imgUpload" accept="image/*">
+                <label class="custom-file-label" for="imgUpload">Choose file</label>
             </div>
             <div class='col-auto'>
                 <button type="submit" class='btn btn-success'>Upload</button>

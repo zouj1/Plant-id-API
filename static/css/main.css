@@ -43,3 +43,7 @@
     text-transform: capitalize;
     margin-top: 20px;
 }
+
+.custom-file {
+    width: auto;
+}
