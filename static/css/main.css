@@ -59,7 +59,15 @@
 
 .wikipediaURL > a {
     color: #558263;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px #558263 solid;
 }
+
+.wikipediaURL > a:hover {
+    text-decoration: underline;
+}
+
 
 .funfact {
     color: #e67a73;
@@ -68,4 +76,7 @@
 
 .funfactWrap {
     text-align: justify;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
 }
