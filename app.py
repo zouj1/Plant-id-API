@@ -20,7 +20,9 @@ def identify(img_path, thresh=0.6):
         RETURNS: dictionary of info if thresh is met, str saying try again if not'''
     with open(img_path, "rb") as file:
         images = [base64.b64encode(file.read()).decode("ascii")]
-
+    
+    print("found image")
+    
     json_data = {
         "images": images,
         "modifiers": ["similar_images"],
@@ -84,11 +86,11 @@ def rank_sentences(text_dict, top=5):
     all_text = [(sent, TextBlob(sent).polarity) for sent in sentences]
     all_text_forward = sorted(all_text, key = lambda x: x[1], reverse=True)[:top]
 
-    return [clean_text(text) for text in all_text_forward]
+    return [(clean_text(text), score) for text,score in all_text_forward]
 
 def clean_text(text):
     '''clean up the ===title=== part of the text'''
-    text = re.sub('e.g.', '', text)
+    text = re.sub('e\.g\.', '', text)
     return re.sub(r'(=)+([a-zA-Z0-9\s]*)(=)+', '', text).strip()
 
 @app.route('/', methods=['POST', 'GET'])
@@ -105,7 +107,11 @@ def index():
                 name = info['suggestions'][0]['plant_name']
                 common_names = info['suggestions'][0]["plant_details"]["common_names"][0]
                 url = info['suggestions'][0]["plant_details"]["url"]
-                fact = "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                text_dict = scrape(name)
+                top_sentences = rank_sentences(text_dict, top=2)
+                fact = ""
+                for i in range(len(top_sentences)):
+                    fact += top_sentences[i][0]
                 # scrape(name)
                 return render_template('uploaded.html', filePath=filePath, name=name, commonName=common_names, url=url, fact=fact)
             elif isinstance(info, str):
