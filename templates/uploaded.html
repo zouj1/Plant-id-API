@@ -5,41 +5,6 @@
 {% endblock %}
 
 {% block body %}
-<style>
-  { margin: 0; padding: 0; }
-
-  html {
-      background: url('static/img/bottom-background.jpg') no-repeat center center fixed;
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
-  }
-
-  /* body {
-      background-color: transparent;
-    } */
-
-  .imgWrap {
-    box-sizing: border-box;
-    width: 80%; height: auto;
-    display: block;
-    margin: 4rem auto;
-    padding: 10%;
-    background-image: url('static/img/matte-background.jpg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    border: 8px solid #333;
-    box-shadow: 0 0 0 50px rgba(125,135,18,0.3) inset,
-    0 0 30px rgba(0,0,0,0.8) inset;
-
-    }
-
-    .titleWrap {
-        padding: 20px 0 20px 0;
-        background: #ffb7c350;
-    }
-</style>
 <div class='flowerInfo'>
     <h3>
         {{ commonName }}
@@ -49,7 +14,9 @@
     </p>
 </div>
 
-<img class="imgWrap" src="{{ url_for('static', filename=filePath) }}" alt="Your image" >
+<div class="imgWrap">
+    <img src="{{ url_for('static', filename=filePath) }}" alt="Your image" >
+</div>
 
 <div class='flowerInfo'>
     <div>
@@ -59,12 +26,10 @@
         </p>
         {% endfor %}
     </div>
-    <p class='wikipediaURL'>
-        <a href="{{ url }}">Learn more!</a>
-    </p>
-    <p>
-        <a href="{{ amazon }}">Shop Now</a>
-    </p>
+    <div class="buttonRow">
+        <div class="amazonURL"><a href="{{ amazon }}">Buy Seeds</a></div>
+        <div class="wikipediaURL"><a href="{{ url }}">Learn more!</a></div>
+    </div>
 </div>
 {% endblock %}
 
