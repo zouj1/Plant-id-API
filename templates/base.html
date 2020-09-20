@@ -8,8 +8,39 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <title>{% block title %}{% endblock %}</title>
-</head>
 
+    <style>
+      { margin: 0; padding: 0; }
+
+      html {
+          background: url('static/img/bottom-background.jpg') no-repeat center center fixed;
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
+      }
+
+      /* body {
+          background-color: transparent;
+        } */
+
+      .imgWrap {
+        box-sizing: border-box;
+        width: 80%; height: auto;
+        display: block;
+        margin: 4rem auto;
+        padding: 10%;
+        background-image: url('static/img/matte-background.jpg');
+        background-repeat: no-repeat;
+        background-size: contain;
+        border: 8px solid #333;
+        box-shadow: 0 0 0 50px rgba(125,135,18,0.3) inset,
+        0 0 30px rgba(0,0,0,0.8) inset;
+
+        }
+    </style>
+
+</head>
 <body class='container'>
     <h1 id='title'>Next Plant</h1>
 
@@ -32,6 +63,8 @@
             </div>
         </form>
     </div>
+
+    <!-- <img class="imgWrap" src="static/img/clover.jpeg" alt="Photograph of a Chinese princess reclining on a wooden bench"> -->
 
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
     <script>

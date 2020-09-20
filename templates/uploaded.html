@@ -5,9 +5,6 @@
 {% endblock %}
 
 {% block body %}
-<div class='imgWrap'>
-    <img src="{{ url_for('static', filename=filePath) }}" alt="Your image">
-</div>
 
 <div class='flowerInfo'>
     <h3>
@@ -16,6 +13,11 @@
     <p class='sciName'>
         ( {{ name }} )
     </p>
+</div>
+
+<img class="imgWrap" src="{{ url_for('static', filename=filePath) }}" alt="Your image" >
+
+<div class='flowerInfo'>
     <div>
         <p class='funfactWrap'>
             <span class='funfact'>Fun Fact</span>: {{ fact }}
