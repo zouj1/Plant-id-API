@@ -109,11 +109,14 @@ def index():
                 url = info['suggestions'][0]["plant_details"]["url"]
                 text_dict = scrape(name)
                 top_sentences = rank_sentences(text_dict, top=2)
-                fact = ""
-                for i in range(len(top_sentences)):
-                    fact += top_sentences[i][0] + " "
+                
+                nameSplit = common_names.split(" ")
+                amazonQuery = "https://www.amazon.com/s?k="
+                for word in nameSplit:
+                    amazonQuery += word + "+"
+                amazonQuery += "seeds+for+planting"
                 # scrape(name)
-                return render_template('uploaded.html', filePath=filePath, name=name, commonName=common_names, url=url, fact=top_sentences)
+                return render_template('uploaded.html', filePath=filePath, name=name, commonName=common_names, url=url, fact=top_sentences, amazon=amazonQuery)
             elif isinstance(info, str):
                 return render_template('lowconf.html', filePath=filePath)
         else:
