@@ -66,8 +66,8 @@
 
 .wikipediaURL > a:hover {
     text-decoration: underline;
+    font-weight: bold;
 }
-
 
 .funfact {
     color: #e67a73;
@@ -79,4 +79,5 @@
     margin-left: auto;
     margin-right: auto;
     width: 90%;
+    text-transform: none;
 }
