@@ -20,9 +20,9 @@ def identify(img_path, thresh=0.3):
         RETURNS: dictionary of info if thresh is met, str saying try again if not'''
     with open(img_path, "rb") as file:
         images = [base64.b64encode(file.read()).decode("ascii")]
-    
+
     print("found image")
-    
+
     json_data = {
         "images": images,
         "modifiers": ["similar_images"],
@@ -43,9 +43,9 @@ def identify(img_path, thresh=0.3):
     return response
 
 
-def scrape(name, filtered_sections=False):
+def scrape(name, removed_sections=['References', 'External links', 'See also', 'Notes', 'Further reading']):
     ''' name (str): name of plant
-        filtered_sections: False if you want info from all sections, or list of strings if you only want some info
+        removed_sections: list of strings of sections for which you don't want info
         RETURNS: dict of '''
     top_wiki = wikipedia.search(name)[0]
     all_content = wikipedia.page(top_wiki).content
@@ -57,18 +57,11 @@ def scrape(name, filtered_sections=False):
         if i % 2 == 1:
             content_dict[section_split[i]] = section_split[i+1]
 
-    if filtered_sections == False:
-        return content_dict
-    else:
-        filtered = {}
-        for section in filtered_sections:
-            try:
-                filtered[section] = content_dict[section]
-            except KeyError:
-                print('the section: ' + section +
-                      ' does not exist for ' + name)
+    for section in removed_sections:
+        if section in content_dict:
+            del content_dict[section]
 
-        return filtered
+        return content_dict
 
 def rank_sentences(text_dict, top=5):
     '''
@@ -109,7 +102,7 @@ def index():
                 url = info['suggestions'][0]["plant_details"]["url"]
                 text_dict = scrape(name)
                 top_sentences = rank_sentences(text_dict, top=2)
-                
+
                 nameSplit = common_names.split(" ")
                 amazonQuery = "https://www.amazon.com/s?k="
                 for word in nameSplit:
@@ -120,7 +113,7 @@ def index():
             elif isinstance(info, str):
                 return render_template('lowconf.html', filePath=filePath)
         else:
-            return 
+            return
     else:
         return render_template('index.html')
 
