@@ -115,7 +115,9 @@ def index():
                 # scrape(name)
                 return render_template('uploaded.html', filePath=filePath, name=name, commonName=common_names, url=url, fact=top_sentences)
             elif isinstance(info, str):
-                print(info)
+                return render_template('lowconf.html', filePath=filePath)
+        else:
+            return 
     else:
         return render_template('index.html')
 

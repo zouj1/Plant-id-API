@@ -16,7 +16,7 @@
     background-color: #bedacb80;
     padding: 10px 10px 0 10px;
     border-radius: 5px;
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 .uploadDescr {
@@ -43,6 +43,8 @@
 }
 .imgWrap > img {
     border-radius: 5px;
+    max-width: 100%;
+    width: 300px;
     width: auto;
 }
 
