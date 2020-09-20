@@ -11,7 +11,7 @@ from flask import Flask, render_template, url_for, request, redirect
 app = Flask(__name__)
 
 
-def identify(img_path, thresh=0.6):
+def identify(img_path, thresh=0.3):
     # jasmine's api key: only used 3 id
     your_api_key = "E66BiKTPRCUdCczIgRzOBhg8U6NKjymYrM288lFmzCMKxl8Nx7"
 
