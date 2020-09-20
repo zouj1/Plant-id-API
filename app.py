@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 def identify(img_path, thresh=0.3):
     # jasmine's api key: only used 3 id
-    your_api_key = "E66BiKTPRCUdCczIgRzOBhg8U6NKjymYrM288lFmzCMKxl8Nx7"
+    your_api_key = "rLGVjfad2327BNuznXIHsIttJzt1GEzqQpvU1cKoieAoUrkp7Q"
 
     '''img_path(str): path to image to be identified
         thresh(float): probability for which we are confident enought in our classification
