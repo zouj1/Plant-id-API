@@ -111,9 +111,9 @@ def index():
                 top_sentences = rank_sentences(text_dict, top=2)
                 fact = ""
                 for i in range(len(top_sentences)):
-                    fact += top_sentences[i][0]
+                    fact += top_sentences[i][0] + " "
                 # scrape(name)
-                return render_template('uploaded.html', filePath=filePath, name=name, commonName=common_names, url=url, fact=fact)
+                return render_template('uploaded.html', filePath=filePath, name=name, commonName=common_names, url=url, fact=top_sentences)
             elif isinstance(info, str):
                 print(info)
     else:

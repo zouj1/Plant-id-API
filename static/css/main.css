@@ -1,11 +1,19 @@
 #title {
     text-align: center;
-    margin: 20px 0 50px 0;
     color: #558263
 }
 
+.titleWrap {
+    padding: 20px 0 20px 0;
+    background: #ffb7c350;
+}
+
+.container {
+    margin-top: 20px;
+}
+
 .uploadPhoto {
-    background-color: #bedacb;
+    background-color: #bedacb80;
     padding: 10px 10px 0 10px;
     border-radius: 5px;
     margin-top: 50px;
@@ -27,7 +35,7 @@
 }
 
 .homeDescr {
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .imgWrap {
@@ -51,6 +59,7 @@
 .sciName {
     font-style: italic;
     color: gray;
+    margin-top: -10px;
 }
 
 .wikipediaURL {
@@ -66,7 +75,6 @@
 
 .wikipediaURL > a:hover {
     text-decoration: underline;
-    font-weight: bold;
 }
 
 .funfact {

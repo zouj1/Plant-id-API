@@ -17,9 +17,11 @@
         ( {{ name }} )
     </p>
     <div>
+        {% for sentence in fact %}
         <p class='funfactWrap'>
-            <span class='funfact'>Fun Fact</span>: {{ fact }}
+            <span class='funfact'>Fun Fact:</span> {{ sentence[0] }}
         </p>
+        {% endfor %}
     </div>
     <p class='wikipediaURL'>
         <a href="{{ url }}">Learn more!</a>
