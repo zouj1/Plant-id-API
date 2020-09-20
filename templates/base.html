@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <title>{% block title %}{% endblock %}</title>
 
+<<<<<<< HEAD
     <style>
       { margin: 0; padding: 0; }
 
@@ -43,7 +44,14 @@
 </head>
 <body class='container'>
     <h1 id='title'>Next Plant</h1>
+=======
+<body>
+    <div class='titleWrap'>
+        <h1 id='title'>Next Plant</h1>
+    </div>
+>>>>>>> 1610b9a9851adbc5f838e53de3ecb574ae426174
 
+    <div class='container'>
     {% block body%}{% endblock %}
 
     <div class='uploadPhoto'>
@@ -54,7 +62,7 @@
                     <input type="file" name="imgUpload" id="imgUpload" accept="image/*">
                 </div> -->
                 <div class="col-auto custom-file">
-                    <input type="file" class="custom-file-input" name="imgUpload" id="imgUpload" accept="image/*">
+                    <input type="file" class="custom-file-input" name="imgUpload" id="imgUpload" accept="image/*" required>
                     <label class="custom-file-label" for="imgUpload">Choose file</label>
                 </div>
                 <div class='col-auto'>
@@ -62,6 +70,7 @@
                 </div>
             </div>
         </form>
+    </div>
     </div>
 
     <!-- <img class="imgWrap" src="static/img/clover.jpeg" alt="Photograph of a Chinese princess reclining on a wooden bench"> -->

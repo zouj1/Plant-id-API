@@ -3,6 +3,8 @@ import base64
 import requests
 import wikipedia
 import re
+from textblob import TextBlob
+from nltk.tokenize import sent_tokenize
 
 from flask import Flask, render_template, url_for, request, redirect
 
@@ -18,7 +20,9 @@ def identify(img_path, thresh=0.6):
         RETURNS: dictionary of info if thresh is met, str saying try again if not'''
     with open(img_path, "rb") as file:
         images = [base64.b64encode(file.read()).decode("ascii")]
-
+    
+    print("found image")
+    
     json_data = {
         "images": images,
         "modifiers": ["similar_images"],
@@ -66,6 +70,29 @@ def scrape(name, filtered_sections=False):
 
         return filtered
 
+def rank_sentences(text_dict, top=5):
+    '''
+    text_dict(dict): a dictionary mapping different sections to some text. use the output from the scrape
+                     function as an argument
+    top(int): total number of sentences that will be returned by this function. Default is 5.
+
+    Summary of the algorithm: Stitch all the text together and break them down into sentences.
+    For each sentence, give a sentiment score. Take some number of sentences(specified by top)
+    with the highest sentiment score(i.e. more positive sentiment) and return the cleaned version of them.
+    '''
+
+    all_text = ' '.join(text_dict[key] for key in text_dict)
+    sentences = sent_tokenize(all_text)
+    all_text = [(sent, TextBlob(sent).polarity) for sent in sentences]
+    all_text_forward = sorted(all_text, key = lambda x: x[1], reverse=True)[:top]
+
+    return [(clean_text(text), score) for text,score in all_text_forward]
+
+def clean_text(text):
+    '''clean up the ===title=== part of the text'''
+    text = re.sub('e\.g\.', '', text)
+    return re.sub(r'(=)+([a-zA-Z0-9\s]*)(=)+', '', text).strip()
+
 @app.route('/', methods=['POST', 'GET'])
 def index():
     if request.method == 'POST':
@@ -80,11 +107,17 @@ def index():
                 name = info['suggestions'][0]['plant_name']
                 common_names = info['suggestions'][0]["plant_details"]["common_names"][0]
                 url = info['suggestions'][0]["plant_details"]["url"]
-                fact = "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                text_dict = scrape(name)
+                top_sentences = rank_sentences(text_dict, top=2)
+                fact = ""
+                for i in range(len(top_sentences)):
+                    fact += top_sentences[i][0] + " "
                 # scrape(name)
-                return render_template('uploaded.html', filePath=filePath, name=name, commonName=common_names, url=url, fact=fact)
+                return render_template('uploaded.html', filePath=filePath, name=name, commonName=common_names, url=url, fact=top_sentences)
             elif isinstance(info, str):
-                print(info)
+                return render_template('lowconf.html', filePath=filePath)
+        else:
+            return 
     else:
         return render_template('index.html')
 

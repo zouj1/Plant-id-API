@@ -30,18 +30,7 @@
     margin-top: 50px;
 }
 
-.imgWrap {
-  box-sizing: border-box;
-  width: 80%; height: auto;
-  display: block;
-  margin: 4rem auto;
-  padding: 10%;
-  background-image: url('static/img/matte-background.jpg');
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: 8px solid #333;
-  box-shadow: 0 0 0 50px rgba(125,135,18,0.3) inset,
-  0 0 30px rgba(0,0,0,0.8) inset;}
+
 
 .flowerInfo {
     text-align: center;

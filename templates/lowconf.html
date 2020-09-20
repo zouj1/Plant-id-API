@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Next Plant Info
+{% endblock %}
+
+{% block body %}
+<div class='imgWrap'>
+    <img src="{{ url_for('static', filename=filePath) }}" alt="Your image">
+</div>
+
+<p class='homeDescr'>Sorry! We cannot confidently identify the plant in the photo.</p>
+{% endblock %}
+
+{% block upload %}
+    Identify Another Plant
+{% endblock %}
