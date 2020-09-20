@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <title>{% block title %}{% endblock %}</title>
-
-<<<<<<< HEAD
     <style>
       { margin: 0; padding: 0; }
 
@@ -39,17 +37,18 @@
         0 0 30px rgba(0,0,0,0.8) inset;
 
         }
-    </style>
 
+        .titleWrap {
+            padding: 20px 0 20px 0;
+            background: #ffb7c350;
+        }
+    </style>
 </head>
-<body class='container'>
-    <h1 id='title'>Next Plant</h1>
-=======
+
 <body>
     <div class='titleWrap'>
         <h1 id='title'>Next Plant</h1>
     </div>
->>>>>>> 1610b9a9851adbc5f838e53de3ecb574ae426174
 
     <div class='container'>
     {% block body%}{% endblock %}

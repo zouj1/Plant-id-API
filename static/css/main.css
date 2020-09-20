@@ -4,6 +4,11 @@
     color: #558263;
 }
 
+.titleWrap {
+    padding: 20px 0 20px 0;
+    background: #ffb7c350;
+}
+
 .uploadPhoto {
     background-color: #bedacb;
     padding: 10px 10px 0 10px;
